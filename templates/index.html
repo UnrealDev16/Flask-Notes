@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block body %}
+{% if error %}
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
+    <strong>Error</strong> {{error}}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endif %}
+    <center>
+        <h1 style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">Notes App</h1>
+        <form action="/add" method="post">
+            <input type="text" name="note" placeholder="Note to Add">
+            <input class="btn btn-outline-primary" type="submit" value="+">
+        </form>
+        <div>
+            {% for task in tasks %}
+                <div class="alert alert-primary">
+                    <form action="/remove" method="post">
+                        <label style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">{{task}}</label>
+                        <input type="hidden" name="val" value="{{task}}">
+                        <input class="btn btn-outline-primary" type="submit" value="x">
+                    </form>
+                </div>
+            {% endfor %}
+        </div>
+    </center>
+{% endblock %}
